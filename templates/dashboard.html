@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 mx-auto mt-2">
+            <h2>Dashboard: History of Responses from Mandrill (Stored in the Database)</h2>
+
+            {{request.data}}
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Event ID</th>
+                    <th scope="col">Event Type</th>
+                    <th scope="col">Sender</th>
+                    <th scope="col">Recipient</th>
+                    <th scope="col">Sent on</th>
+                    <th scope="col">Opened On</th>
+                    <th scope="col">URL in Message</th>
+                    <th scope="col">Time of Clicks</th>
+                    <th scope="col">Email State</th>
+                    <th scope="col">Message ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for item in data %}
+                    <tr>
+                        <th id="event_id" scope="row">{{ item.event_id }}</th>
+                        <td id="event">{{ item.event }}</td>
+                        <td id="sender">{{ item.sender }}</td>
+                        <td id="email">{{ item.email }}</td>
+                        <td id="message_ts">{{ item.message_ts }}</td>
+                        <td id="time_opened">{{ item.time_opened }}</td>
+                        <td id="url_clicked">{{ item.url_clicked }}</td>
+                        <td id="time_clicked">{{ item.time_clicked }}</td>
+                        <td id="state">{{ item.state }}</td>
+                        <td id="message_id">{{ item.message_id }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

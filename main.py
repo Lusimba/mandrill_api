@@ -6,7 +6,7 @@ from database import get_db
 import models
 from database import engine
 
-from data.api_data_manager import get_all_records
+from api_data_manager import get_all_records
 from helperfuncs import send_data_to_frontend
 
 app = FastAPI()
@@ -22,7 +22,7 @@ def home(request: Request):
 @app.websocket("/ws/mandrill/broadcast")
 async def websocket_endpoint(websocket: WebSocket, db: Session=Depends(get_db)):
     """Display live data from Mandrill API"""
-    asyncio.run(await send_data_to_frontend(websocket, db))
+    await send_data_to_frontend(websocket, db)
 
 @app.get("/dashboard")
 def dashboard(request: Request, db: Session=Depends(get_db)):

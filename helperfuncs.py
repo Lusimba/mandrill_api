@@ -1,9 +1,10 @@
 import json
 import asyncio
-from data.api_data_manager import process_data, get_api_data, save_data_to_db
+from api_data_manager import process_data, get_api_data, save_data_to_db
 
 
 async def send_data_to_frontend(websocket, db):
+  """Display live data from Mandrill API and save it to the database"""
   await websocket.accept()
 
   while True:
@@ -20,5 +21,5 @@ async def send_data_to_frontend(websocket, db):
       await asyncio.sleep(1)
 
     except:
-      await websocket.send_text("This task has failed")
+      await websocket.send_text("Something went wrong.")
       break

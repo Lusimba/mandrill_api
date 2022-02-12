@@ -27,5 +27,4 @@ async def websocket_endpoint(websocket: WebSocket, db: Session=Depends(get_db)):
 def dashboard(request: Request, db: Session=Depends(get_db)):
     """Display all data saved in the database"""
     data = get_all_records(db)
-    print(data)
     return templates.TemplateResponse("dashboard.html", {"request" : request, "data": data})

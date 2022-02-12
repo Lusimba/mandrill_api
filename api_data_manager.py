@@ -65,7 +65,7 @@ def process_data(data):
       response_details['url_clicked'] = message['clicks'][0]['url'] if message.get('clicks',[]) else 'No URL'
 
       return response_details
-  except Exception as e:
+  except:
       return f'Something went wrong.'
 
 
@@ -73,7 +73,7 @@ def get_all_records(db: Session):
   """Fetch all records from db"""
   try:
     return db.query(MandrillResponse).all()
-  except Exception as e:
+  except:
       return f'Something went wrong.'
 
 
@@ -81,7 +81,7 @@ def get_record_by_message_id(message_id: str, db: Session):
   """Fetch a single data from db by the message_id"""
   try:
     return db.query(MandrillResponse).filter(MandrillResponse.message_id == message_id).first()
-  except Exception as e:
+  except:
     return f'Something went wrong.'
 
 
@@ -103,7 +103,7 @@ def create_db_record(mandrill_data: MandrillData, db: Session):
     db.add(db_obj)
     db.commit()
     db.refresh(db_obj)
-  except Exception as e:
+  except:
       return f'Something went wrong.'
 
 
@@ -117,5 +117,5 @@ def save_data_to_db(mandrill_data: MandrillData, db: Session):
       data = get_record_by_message_id(mandrill_data['message_id'], db)
       if data is None:
         create_db_record(mandrill_data, db)
-    except Exception as e:
+    except:
       return f'Something went wrong.'

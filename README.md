@@ -5,7 +5,7 @@ This application is designed to fetch response data from the mandrill API asynch
 1. Create a local copy of the repository by running 
     - '$ git clone https://github.com/Lusimba/mandrill_api.git'
 2. Navigate into the repository by running 
-    - '$ cd into mandrill_api'
+    - '$ cd mandrill_api'
 3. Create a virtual environment to install dependencies by running 
     - '$ python3 -m venv env'
 4. Activate your virtual environment by running 

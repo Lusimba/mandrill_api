@@ -1,6 +1,5 @@
 from fastapi.templating import Jinja2Templates
 from fastapi import FastAPI, WebSocket, Request, Depends
-import asyncio
 from sqlalchemy.orm import Session
 from database import get_db
 import models

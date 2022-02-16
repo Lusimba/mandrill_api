@@ -14,7 +14,7 @@ class MandrillResponse(Base):
     sender = Column(String)
     state = Column(String)
 
-    #message ID is the primary key
+    # message ID is the primary key
     message_id = Column(Integer, primary_key=True)
     time_opened = Column(String)
     time_clicked = Column(String)

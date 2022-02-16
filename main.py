@@ -18,13 +18,17 @@ def home(request: Request):
     """Display live data from Mandrill API"""
     return templates.TemplateResponse("home.html", {"request": request})
 
+
 @app.websocket("/ws/mandrill/broadcast")
-async def websocket_endpoint(websocket: WebSocket, db: Session=Depends(get_db)):
+async def websocket_endpoint(websocket: WebSocket, db: Session = Depends(get_db)):
     """Display live data from Mandrill API"""
     await send_data_to_frontend(websocket, db)
 
+
 @app.get("/dashboard")
-def dashboard(request: Request, db: Session=Depends(get_db)):
+def dashboard(request: Request, db: Session = Depends(get_db)):
     """Display all data saved in the database"""
     data = get_all_records(db)
-    return templates.TemplateResponse("dashboard.html", {"request" : request, "data": data})
+    return templates.TemplateResponse(
+        "dashboard.html", {"request": request, "data": data}
+    )

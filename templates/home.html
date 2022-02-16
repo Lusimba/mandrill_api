@@ -42,21 +42,24 @@
         var socket = new WebSocket('ws://localhost:8000/ws/mandrill/broadcast')
         socket.onmessage = (event) => {
             var data = event.data;
-        
-            var stored = JSON.parse(data)
+            if (data === "something went wrong"){
+              window.alert(data)
+            } else{
+              var stored = JSON.parse(data)
 
-        //    updating the real-time data through DOM manipulation
+              //  updating the real-time data through DOM manipulation
 
-            document.querySelector('#event_id').innerText = stored.event_id
-            document.querySelector('#event').innerText = stored.event
-            document.querySelector('#sender').innerText = stored.sender
-            document.querySelector('#email').innerText = stored.email
-            document.querySelector('#message_ts').innerText = stored.message_ts
-            document.querySelector('#time_opened').innerText = stored.time_opened
-            document.querySelector('#url_clicked').innerText = stored.url_clicked
-            document.querySelector('#time_clicked').innerText = stored.time_clicked
-            document.querySelector('#state').innerText = stored.state
-            document.querySelector('#message_id').innerText = stored.message_id
+              document.querySelector('#event_id').innerText = stored.event_id
+              document.querySelector('#event').innerText = stored.event
+              document.querySelector('#sender').innerText = stored.sender
+              document.querySelector('#email').innerText = stored.email
+              document.querySelector('#message_ts').innerText = stored.message_ts
+              document.querySelector('#time_opened').innerText = stored.time_opened
+              document.querySelector('#url_clicked').innerText = stored.url_clicked
+              document.querySelector('#time_clicked').innerText = stored.time_clicked
+              document.querySelector('#state').innerText = stored.state
+              document.querySelector('#message_id').innerText = stored.message_id
+            }
         }
     </script>
 
